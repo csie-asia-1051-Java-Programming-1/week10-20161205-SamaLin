@@ -24,7 +24,7 @@ public class ex03 {
 		double val = 0;
 
 		while (!(str.equals("N") || str.equals("n"))) {
-			System.out.println("input a value:");
+			System.out.println("請輸入  姓名   性別   身高   體重:");
 			String name = scn.next();
 			String sex = scn.next();
 			float height = scn.nextFloat();
@@ -56,6 +56,7 @@ public class ex03 {
 				}
 			}
 			int size=dataList.size();
+			System.out.println("姓名   性別   身高   體重   BMI值");
 			for(int k=0;k<size;k++){
 				dataList.get(k).showInfo();
 				System.out.println();
