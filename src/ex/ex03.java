@@ -13,55 +13,66 @@ public class ex03 {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		Scanner scn = new Scanner(System.in);
-		ArrayList<Integer> dataList = new ArrayList<Integer>();
-		String name = scn.next();
-		int sex = scn.nextInt();
-		float height = scn.nextFloat();
-		float weight = scn.nextFloat();
+		ArrayList<ex03_Person> dataList = new ArrayList<ex03_Person>();
+//		String name = scn.next();
+//		int sex = scn.nextInt();
+//		float height = scn.nextFloat();
+//		float weight = scn.nextFloat();
 		boolean flag = false;
 		String str = "Y";
-		int i = 0, val = 0;
+		int i = 0;
+		double val = 0;
 
 		while (!(str.equals("N") || str.equals("n"))) {
 			System.out.println("input a value:");
-			val = scn.nextInt();
+			String name = scn.next();
+			String sex = scn.next();
+			float height = scn.nextFloat();
+			float weight = scn.nextFloat();
+			val=weight/((height/100)*(height/100));
 			if (dataList.size() == 0) {
-				dataList.add(val);
+				dataList.add(new ex03_Person(name,sex,height,weight));
 			} else if (dataList.size() == 1) {
-				if (dataList.get(i) > val) {
-					dataList.add(val);
+				if (dataList.get(i).getBMI() > val) {
+					dataList.add(new ex03_Person(name,sex,height,weight));
 				} else {
-					dataList.add(0, val);
+					dataList.add(0,new ex03_Person(name,sex,height,weight));
 				}
 			} else {
 				flag = true;
 				i = 0;
 				while (flag && i < dataList.size() - 1) {
-					if (i == 0 && dataList.get(0) < val) {
-						dataList.add(0, val);
+					if (i == 0 && dataList.get(0).getBMI() < val) {
+						dataList.add(0, new ex03_Person(name,sex,height,weight));
 						flag = false;
 					} else {
-						if (dataList.get(i) > val && dataList.get(i + 1) <= val) {
+						if (dataList.get(i).getBMI() > val && dataList.get(i + 1).getBMI() <= val) {
 							flag = false;
-							dataList.add(i + 1, val);
+							dataList.add(i + 1, new ex03_Person(name,sex,height,weight));
 						} else {
 							i++;
 						}
 					}
 				}
 			}
-			showListData(dataList);
-			System.out.print("Conteinue");
+			int size=dataList.size();
+			for(int k=0;k<size;k++){
+				dataList.get(k).showInfo();
+				System.out.println();
+			}
+			System.out.println("Conteinue");
 			str = scn.next();
 
 		}
 
 	}
-	private static void showListData(ArrayList list){
-		int size=list.size();
-		for(int i=0;i<size;i++){
-			System.out.print(list.get(i)+"\t");
-		}
-		System.out.println();
-	}
+//	private static void showListData(ArrayList list){
+//		int size=list.size();
+//		for(int i=0;i<size;i++){
+//			System.out.println(list.get(i));
+//		}
+//	}
+//	private static float getBMI(){
+//		return ;
+//	}
 }
